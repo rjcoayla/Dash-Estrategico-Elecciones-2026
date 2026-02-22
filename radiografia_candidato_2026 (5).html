@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RadiografÍA Candidato Ideal 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════
+   ROOT VARIABLES
+═══════════════════════════════════════════ */
+:root {
+  --rla:    #1E88E5;
+  --rla2:   #42A5F5;
+  --keiko:  #E53935;
+  --keiko2: #EF5350;
+  --alv:    #00ACC1;
+  --alv2:   #26C6DA;
+  --lop:    #43A047;
+  --lop2:   #66BB6A;
+  --acu:    #FB8C00;
+  --acu2:   #FFA726;
+  --viz:    #8E24AA;
+  --viz2:   #AB47BC;
+  --for:    #546E7A;
+  --for2:   #78909C;
+  --luna:   #D81B60;
+  --luna2:  #EC407A;
+
+  --bg:     #F0F4FF;
+  --bg2:    #E6ECFA;
+  --surf:   #FFFFFF;
+  --surf2:  #F5F7FF;
+  --bdr:    #D4DCF5;
+  --bdr2:   #C2CEEE;
+  --text:   #0D1535;
+  --text2:  #3D4A72;
+  --muted:  #7B89B8;
+  --red:    #C62828;
+
+  --glow-rla:   0 0 12px rgba(30,136,229,.35);
+  --glow-keiko: 0 0 12px rgba(229,57,53,.35);
+  --glow-alv:   0 0 12px rgba(0,172,193,.35);
+  --glow-lop:   0 0 12px rgba(67,160,71,.35);
+  --glow-acu:   0 0 12px rgba(251,140,0,.35);
+  --glow-viz:   0 0 12px rgba(142,36,170,.35);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  font-family: 'Exo 2', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+}
+
+/* ═══════════════════════════════════════════
+   BACKGROUND TEXTURE
+═══════════════════════════════════════════ */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 20%, rgba(30,136,229,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 80%, rgba(229,57,53,.05) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 10%, rgba(67,160,71,.04) 0%, transparent 60%);
+}
+
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+.hdr {
+  position: relative; z-index:10;
+  background: linear-gradient(135deg, #0D1535 0%, #162040 50%, #0D1A3A 100%);
+  border-bottom: 2px solid rgba(30,136,229,.4);
+  padding: 0 18px;
+  display: flex; align-items: center; gap: 14px;
+  height: 48px; flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+
+/* Bandera Peruana */
+.flag {
+  display:flex; width:38px; height:26px;
+  border-radius:4px; overflow:hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.1);
+  flex-shrink:0;
+}
+.fr { background: linear-gradient(180deg,#CE1126,#A8001E); flex:1; }
+.fw { background:#FFFFFF; flex:1; display:flex; align-items:center; justify-content:center; }
+
+/* TITLE */
+.htitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 21px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: #E8EEFF;
+  text-shadow: 0 0 20px rgba(100,150,255,.3);
+}
+.htitle .bold { font-weight: 700; color: #FFFFFF; }
+.htitle .yr {
+  font-weight: 700; color: #FFD740;
+  text-shadow: 0 0 14px rgba(255,215,64,.6);
+}
+.htitle .ia {
+  font-weight: 700; font-size: 27px;
+  color: #FF5252;
+  text-shadow: 0 0 16px rgba(255,82,82,.7);
+  letter-spacing: 0;
+}
+
+/* HEADER STATS */
+.hstats { margin-left:auto; display:flex; gap:16px; align-items:center; }
+.hs { text-align:center; }
+.hl { font-family:'Exo 2',sans-serif; font-size:7.5px; color:rgba(200,210,255,.6); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:1px; }
+.hv { font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:#FFFFFF; line-height:1; }
+.hv.g  { color:#69F0AE; text-shadow:0 0 10px rgba(105,240,174,.5); }
+.hv.b  { color:#40C4FF; text-shadow:0 0 10px rgba(64,196,255,.5); }
+.hv.sm { font-size:12px; font-weight:600; color:#B0C0FF; }
+.hdiv  { width:1px; height:28px; background:rgba(255,255,255,.1); }
+
+/* ═══════════════════════════════════════════
+   FILTER BAR
+═══════════════════════════════════════════ */
+.fbar {
+  position:relative; z-index:10;
+  background: linear-gradient(90deg, #F5F7FF, #EDF1FF, #F5F7FF);
+  border-bottom: 1px solid var(--bdr);
+  padding: 0 18px; height: 28px;
+  display: flex; gap: 12px; align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  flex-shrink:0;
+}
+.fg { display:flex; align-items:center; gap:5px; font-size:9.5px; color:var(--muted); font-weight:500; }
+.fb { border:1px solid var(--bdr2); border-radius:20px; padding:1px 9px; font-size:9.5px; background:var(--surf); color:var(--text2); font-weight:500; }
+.fb.a {
+  background: linear-gradient(135deg, rgba(30,136,229,.1), rgba(30,136,229,.05));
+  border-color: rgba(30,136,229,.4);
+  color: #1565C0; font-weight:700;
+  box-shadow: 0 0 8px rgba(30,136,229,.15);
+}
+
+/* ═══════════════════════════════════════════
+   MAIN GRID
+═══════════════════════════════════════════ */
+.grid {
+  flex:1; position:relative; z-index:5;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 8px;
+  min-height:0; overflow:hidden;
+}
+
+/* ═══════════════════════════════════════════
+   CARD BASE
+═══════════════════════════════════════════ */
+.card {
+  background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(245,247,255,.95));
+  border: 1px solid var(--bdr);
+  border-radius: 12px;
+  padding: 10px 12px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 12px rgba(0,0,0,.07),
+    0 0 0 1px rgba(255,255,255,.8) inset,
+    0 1px 0 rgba(255,255,255,.9) inset;
+  display: flex; flex-direction: column;
+  min-height:0;
+  position:relative;
+  transition: box-shadow .2s;
+}
+.card::before {
+  content:'';
+  position:absolute; top:0; left:12px; right:12px; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);
+}
+.card:hover {
+  box-shadow:
+    0 4px 20px rgba(0,0,0,.1),
+    0 0 0 1px rgba(255,255,255,.9) inset;
+}
+
+/* Card accent top stripe */
+.card .accent-bar {
+  position:absolute; top:0; left:0; right:0; height:3px;
+  border-radius:12px 12px 0 0;
+}
+
+/* Card Title */
+.ct {
+  font-family:'Rajdhani',sans-serif;
+  font-size:10px; font-weight:600; letter-spacing:1.8px;
+  text-transform:uppercase; color:var(--muted);
+  margin-bottom:7px; display:flex; align-items:center; gap:6px;
+  flex-shrink:0;
+}
+.dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.sn { font-size:8px; color:var(--muted); text-align:right; margin-top:4px; font-style:italic; flex-shrink:0; opacity:.8; }
+
+canvas { display:block; width:100%!important; }
+
+/* ═══════════════════════════════════════════
+   RANKING
+═══════════════════════════════════════════ */
+.r1c1 { grid-row:1; grid-column:1; }
+.rscroll { flex:1; overflow-y:auto; min-height:0; padding-right:2px; }
+.rscroll::-webkit-scrollbar { width:3px; }
+.rscroll::-webkit-scrollbar-thumb { background:var(--bdr2); border-radius:3px; }
+
+.ri {
+  display:flex; align-items:center; gap:7px;
+  padding:5px 0; border-bottom:1px solid rgba(212,220,245,.5);
+}
+.ri:last-child { border-bottom:none; }
+
+.rnum {
+  font-family:'Rajdhani',sans-serif;
+  font-size:20px; font-weight:700;
+  color:var(--muted); width:14px; text-align:center; flex-shrink:0;
+}
+
+.rav {
+  width:32px; height:32px; border-radius:50%;
+  border:2px solid var(--bdr2);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Rajdhani',sans-serif; font-size:8.5px; font-weight:700;
+  flex-shrink:0; background:var(--surf2);
+  position:relative;
+}
+.rav::after {
+  content:'';
+  position:absolute; inset:-1px; border-radius:50%;
+  background: conic-gradient(from 0deg, transparent 70%, currentColor 100%);
+  opacity:.3;
+}
+
+.rifo { flex:1; min-width:0; }
+.rname {
+  font-family:'Rajdhani',sans-serif;
+  font-size:14px; font-weight:700; line-height:1.1;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.rparty { font-size:8.5px; color:var(--muted); font-weight:500; }
+
+/* GLOWING BAR */
+.rbw { height:4px; background:rgba(212,220,245,.4); border-radius:4px; margin-top:3px; overflow:hidden; }
+.rb  {
+  height:4px; border-radius:4px;
+  position:relative;
+  transition: width .8s cubic-bezier(.4,0,.2,1);
+}
+.rb::after {
+  content:'';
+  position:absolute; top:0; right:0; width:8px; height:4px;
+  background:rgba(255,255,255,.7);
+  border-radius:4px;
+  filter:blur(2px);
+}
+
+.rpct {
+  font-family:'Rajdhani',sans-serif;
+  font-size:18px; font-weight:700;
+  line-height:1; flex-shrink:0;
+}
+.rch { font-size:8.5px; font-weight:700; text-align:right; flex-shrink:0; }
+.cup{color:#43A047;} .cdn{color:#E53935;}
+
+/* ═══════════════════════════════════════════
+   TENDENCIA (center top)
+═══════════════════════════════════════════ */
+.r1c2 { grid-row:1; grid-column:2; }
+
+/* ═══════════════════════════════════════════
+   SENTIMIENTO (right top)
+═══════════════════════════════════════════ */
+.r1c3 { grid-row:1; grid-column:3; }
+
+/* Donut centrado */
+.gauge-wrap {
+  width:96px; height:96px; flex-shrink:0;
+  position:relative;
+  margin:0 auto;
+}
+.gauge-center {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+}
+.gscore {
+  font-family:'Rajdhani',sans-serif;
+  font-size:24px; font-weight:700; color:var(--acu);
+  text-shadow:0 0 12px rgba(251,140,0,.5);
+  line-height:1;
+}
+.glbl { font-size:7.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.7px; font-weight:600; }
+
+.sr { display:flex; align-items:center; gap:6px; margin-bottom:5px; }
+.sd { width:8px; height:8px; border-radius:50%; flex-shrink:0; box-shadow:0 0 6px currentColor; }
+.sname { font-size:9px; color:var(--muted); width:55px; text-transform:uppercase; font-weight:600; letter-spacing:.5px; }
+.sval { font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; margin-left:auto; }
+
+.polar {
+  margin-top:6px;
+  background: linear-gradient(135deg, rgba(30,136,229,.07), rgba(30,136,229,.03));
+  border:1px solid rgba(30,136,229,.2);
+  border-radius:8px; padding:6px 9px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow: 0 0 8px rgba(30,136,229,.08);
+}
+.plbl { font-size:8px; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; font-weight:600; }
+.pval { font-family:'Rajdhani',sans-serif; font-size:20px; font-weight:700; color:var(--rla); text-shadow:var(--glow-rla); }
+
+/* ═══════════════════════════════════════════
+   TENDENCIA MINI (left mid)
+═══════════════════════════════════════════ */
+.r2c1 { grid-row:2; grid-column:1; }
+
+/* ═══════════════════════════════════════════
+   RADAR (center mid)
+═══════════════════════════════════════════ */
+.r2c2 { grid-row:2; grid-column:2; }
+.radar-inner { display:flex; gap:10px; flex:1; min-height:0; }
+.rl-item { display:flex; align-items:center; gap:5px; font-size:10px; margin-bottom:5px; font-weight:500; }
+.rl-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; box-shadow:0 0 6px currentColor; }
+.rl-ch { margin-left:auto; font-weight:700; font-size:9px; }
+.rst { display:flex; align-items:center; gap:5px; margin-bottom:4px; }
+.rst-val { font-family:'Rajdhani',sans-serif; font-size:14px; font-weight:700; color:var(--rla); flex-shrink:0; }
+.rst-lbl { font-size:8.5px; color:var(--muted); line-height:1.2; font-weight:500; }
+
+/* ═══════════════════════════════════════════
+   POSICIONAMIENTO (right mid)
+═══════════════════════════════════════════ */
+.r2c3 { grid-row:2; grid-column:3; }
+
+.prog-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.prog-name {
+  font-family:'Rajdhani',sans-serif; font-size:11.5px; font-weight:700;
+  width:90px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.prog-bar {
+  flex:1; height:9px; background:rgba(212,220,245,.4);
+  border-radius:5px; overflow:hidden; position:relative;
+}
+.prog-fill {
+  height:100%; border-radius:5px;
+  position:relative;
+  transition: width .9s cubic-bezier(.4,0,.2,1);
+}
+/* Glowing inner highlight */
+.prog-fill::before {
+  content:'';
+  position:absolute; top:1px; left:4px; right:8px; height:3px;
+  background:rgba(255,255,255,.45);
+  border-radius:3px;
+}
+/* Bright tip */
+.prog-fill::after {
+  content:'';
+  position:absolute; top:0; right:0; width:10px; height:100%;
+  background:rgba(255,255,255,.55);
+  filter:blur(3px);
+  border-radius:5px;
+}
+.prog-pct {
+  font-family:'Rajdhani',sans-serif; font-size:13px; font-weight:700;
+  width:30px; text-align:right;
+}
+.prog-ch { font-size:8.5px; font-weight:700; width:26px; text-align:right; }
+
+/* ═══════════════════════════════════════════
+   SEGUNDA VUELTA (bottom left+center)
+═══════════════════════════════════════════ */
+.r3c12 { grid-row:3; grid-column:1/3; }
+.sv-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1; min-height:0; }
+
+.sv-title { font-size:8.5px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; font-weight:700; }
+
+.svr { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(212,220,245,.5); }
+.svr:last-child { border-bottom:none; }
+.svc { font-family:'Rajdhani',sans-serif; font-size:12px; font-weight:700; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.svvs { font-size:8px; color:var(--muted); flex-shrink:0; font-weight:600; }
+.svp { font-family:'Rajdhani',sans-serif; font-size:17px; font-weight:700; flex-shrink:0; }
+
+.svd { display:flex; align-items:center; gap:6px; padding:4px 0; border-bottom:1px solid rgba(212,220,245,.5); }
+.svd:last-child { border-bottom:none; }
+.svav {
+  width:28px; height:28px; border-radius:50%;
+  border:2px solid var(--bdr2);
+  background:var(--surf2);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Rajdhani',sans-serif; font-size:8px; font-weight:700; flex-shrink:0;
+}
+.svdi { flex:1; min-width:0; }
+.svdn { font-family:'Rajdhani',sans-serif; font-size:11.5px; font-weight:700; }
+.svds { font-size:8px; color:var(--muted); font-weight:500; }
+.sv-bars { width:82px; flex-shrink:0; }
+.svbr { display:flex; align-items:center; gap:3px; margin-bottom:2px; }
+.svbf {
+  height:5px; border-radius:3px;
+  position:relative;
+}
+.svbf::after {
+  content:''; position:absolute; top:1px; left:2px; right:4px; height:2px;
+  background:rgba(255,255,255,.4); border-radius:2px;
+}
+.svwin { font-family:'Rajdhani',sans-serif; font-size:16px; font-weight:700; width:30px; text-align:right; flex-shrink:0; }
+.sv-alert {
+  margin-top:auto; background:linear-gradient(135deg,rgba(198,40,40,.06),rgba(198,40,40,.02));
+  border-radius:7px; padding:5px 8px; border:1px solid rgba(198,40,40,.15);
+}
+
+/* ═══════════════════════════════════════════
+   CIS (bottom right)
+═══════════════════════════════════════════ */
+.r3c3 { grid-row:3; grid-column:3; }
+.cisr { display:flex; align-items:center; gap:5px; padding:4px 0; border-bottom:1px solid rgba(212,220,245,.5); }
+.cisr:last-child { border-bottom:none; }
+.cisn { font-family:'Rajdhani',sans-serif; font-size:11.5px; font-weight:700; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cisp { font-size:8.5px; color:var(--muted); width:13px; text-align:center; font-weight:600; }
+.cisl { font-size:8px; color:var(--muted); width:65px; font-weight:500; }
+.cisb {
+  font-family:'Rajdhani',sans-serif; font-size:16px; font-weight:700;
+  padding:2px 8px; border-radius:6px; min-width:38px; text-align:center;
+  flex-shrink:0;
+}
+
+/* BADGE VARIANTS — with glow */
+.bb  { background:rgba(30,136,229,.12);  color:var(--rla);   box-shadow:0 0 8px rgba(30,136,229,.25);  }
+.br  { background:rgba(229,57,53,.12);   color:var(--keiko); box-shadow:0 0 8px rgba(229,57,53,.25);  }
+.bc  { background:rgba(0,172,193,.12);   color:var(--alv);   box-shadow:0 0 8px rgba(0,172,193,.25);  }
+.bg  { background:rgba(67,160,71,.12);   color:var(--lop);   box-shadow:0 0 8px rgba(67,160,71,.25);  }
+.bo  { background:rgba(251,140,0,.12);   color:var(--acu);   box-shadow:0 0 8px rgba(251,140,0,.25);  }
+.bp  { background:rgba(142,36,170,.12);  color:var(--viz);   box-shadow:0 0 8px rgba(142,36,170,.25); }
+.bk  { background:rgba(84,110,122,.12);  color:var(--for);   box-shadow:0 0 8px rgba(84,110,122,.15); }
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fi { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.card { animation:fi .4s ease both; }
+.card:nth-child(1){animation-delay:.04s}
+.card:nth-child(2){animation-delay:.08s}
+.card:nth-child(3){animation-delay:.12s}
+.card:nth-child(4){animation-delay:.16s}
+.card:nth-child(5){animation-delay:.20s}
+.card:nth-child(6){animation-delay:.24s}
+.card:nth-child(7){animation-delay:.28s}
+.card:nth-child(8){animation-delay:.32s}
+
+@keyframes bar-glow {
+  0%,100% { opacity:.6; }
+  50%      { opacity:1;  }
+}
+.rb::after, .prog-fill::after { animation:bar-glow 2s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<div class="hdr">
+  <div class="flag">
+    <div class="fr"></div>
+    <div class="fw">
+      <svg width="13" height="15" viewBox="0 0 13 15" fill="none">
+        <ellipse cx="6.5" cy="4.5" rx="3.2" ry="2.2" fill="#1B6B2F"/>
+        <path d="M3.2 6.5 Q6.5 12 6.5 12 Q6.5 12 9.8 6.5" fill="#C8A000"/>
+        <path d="M1 8.5 Q3.2 6.5 3.2 6.5 L1 12 Z" fill="#1B6B2F"/>
+        <path d="M12 8.5 Q9.8 6.5 9.8 6.5 L12 12 Z" fill="#1B6B2F"/>
+      </svg>
+    </div>
+    <div class="fr"></div>
+  </div>
+  <div class="htitle">
+    RADIOGRAF<span class="ia">ÍA</span> DEL <span class="bold">CANDIDATO</span> <span class="yr">2026</span>
+  </div>
+  <div class="hstats">
+    <div class="hs"><span class="hl">Muestra encuestada</span><div class="hv">1.300</div></div>
+    <div class="hdiv"></div>
+    <div class="hs"><span class="hl">Participación est.</span><div class="hv g">~70%</div></div>
+    <div class="hdiv"></div>
+    <div class="hs"><span class="hl">Margen de error</span><div class="hv b">±2.8%</div></div>
+    <div class="hdiv"></div>
+    <div class="hs"><span class="hl">Confianza</span><div class="hv b">95.5%</div></div>
+    <div class="hdiv"></div>
+    <div class="hs"><span class="hl">Fecha de encuesta</span><div class="hv sm">14-18 Feb 2026</div></div>
+  </div>
+</div>
+
+<!-- ══════════ FILTER BAR ══════════ -->
+<div class="fbar">
+  <div class="fg">⊕ Región: <span class="fb a">Perú › Nacional Urbano-Rural</span></div>
+  <div class="fg">⊕ Segmento: <span class="fb a">18-70 años</span></div>
+  <div class="fg">⊕ Fecha: <span class="fb a">14-18 Feb 2026</span></div>
+  <div class="fg">⊕ Fuentes: <span class="fb a">CPI · Ipsos/Perú21 · Datum · IMASOLU</span></div>
+  <div class="fg" style="margin-left:auto;font-weight:700;color:var(--text2)">
+    🗳 1.ª vuelta: <strong style="color:#1565C0">12 Abr 2026</strong> &nbsp;|&nbsp; 🔄 Balotaje: <strong style="color:#1565C0">7 Jun 2026</strong>
+  </div>
+</div>
+
+<!-- ══════════ GRID ══════════ -->
+<div class="grid">
+
+  <!-- ▌R1C1 — RANKING ▐ -->
+  <div class="card r1c1">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--rla),var(--rla2))"></div>
+    <div class="ct"><div class="dot" style="background:var(--rla);box-shadow:var(--glow-rla)"></div>RANKING — INTENCIÓN DE VOTO</div>
+    <div class="rscroll">
+
+      <!-- 1 -->
+      <div class="ri">
+        <div class="rnum" style="color:var(--rla)">1</div>
+        <div class="rav" style="border-color:var(--rla);color:var(--rla)">RLA</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--rla)">R. López Aliaga</div>
+          <div class="rparty">Renovación Popular</div>
+          <div class="rbw"><div class="rb" style="width:93%;background:linear-gradient(90deg,var(--rla),var(--rla2));box-shadow:var(--glow-rla)"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--rla);text-shadow:var(--glow-rla)">13.9%</div><div class="rch cdn">▾ 0.7</div></div>
+      </div>
+      <!-- 2 -->
+      <div class="ri">
+        <div class="rnum">2</div>
+        <div class="rav" style="border-color:var(--keiko);color:var(--keiko)">KF</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--keiko)">Keiko Fujimori</div>
+          <div class="rparty">Fuerza Popular</div>
+          <div class="rbw"><div class="rb" style="width:47%;background:linear-gradient(90deg,var(--keiko),var(--keiko2));box-shadow:var(--glow-keiko)"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--keiko);text-shadow:var(--glow-keiko)">7.0%</div><div class="rch cup">▴ +0.4</div></div>
+      </div>
+      <!-- 3 -->
+      <div class="ri">
+        <div class="rnum">3</div>
+        <div class="rav" style="border-color:var(--alv);color:var(--alv)">CA</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--alv)">Carlos Álvarez</div>
+          <div class="rparty">País para Todos</div>
+          <div class="rbw"><div class="rb" style="width:39%;background:linear-gradient(90deg,var(--alv),var(--alv2));box-shadow:var(--glow-alv)"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--alv);text-shadow:var(--glow-alv)">5.8%</div><div class="rch cup">▴ +1.9</div></div>
+      </div>
+      <!-- 4 -->
+      <div class="ri">
+        <div class="rnum">4</div>
+        <div class="rav" style="border-color:var(--lop);color:var(--lop)">ALC</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--lop)">A. López-Chau</div>
+          <div class="rparty">Ahora Nación</div>
+          <div class="rbw"><div class="rb" style="width:34%;background:linear-gradient(90deg,var(--lop),var(--lop2));box-shadow:var(--glow-lop)"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--lop);text-shadow:var(--glow-lop)">5.1%</div><div class="rch cup">▴ +3.3</div></div>
+      </div>
+      <!-- 5 -->
+      <div class="ri">
+        <div class="rnum">5</div>
+        <div class="rav" style="border-color:var(--acu);color:var(--acu)">CéA</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--acu)">César Acuña</div>
+          <div class="rparty">Alianza p. Progreso</div>
+          <div class="rbw"><div class="rb" style="width:27%;background:linear-gradient(90deg,var(--acu),var(--acu2));box-shadow:var(--glow-acu)"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--acu);text-shadow:var(--glow-acu)">4.0%</div><div class="rch cdn">▾ 0.5</div></div>
+      </div>
+      <!-- 6 -->
+      <div class="ri">
+        <div class="rnum">6</div>
+        <div class="rav" style="border-color:var(--viz);color:var(--viz)">MV</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--viz)">M. Vizcarra</div>
+          <div class="rparty">Perú Primero</div>
+          <div class="rbw"><div class="rb" style="width:25%;background:linear-gradient(90deg,var(--viz),var(--viz2));box-shadow:var(--glow-viz)"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--viz);text-shadow:var(--glow-viz)">3.7%</div><div class="rch cdn">▾ 0.7</div></div>
+      </div>
+      <!-- 7 -->
+      <div class="ri">
+        <div class="rnum">7</div>
+        <div class="rav" style="border-color:#7CB342;color:#7CB342">YL</div>
+        <div class="rifo">
+          <div class="rname" style="color:#7CB342">Y. Lescano</div>
+          <div class="rparty">Cooperación Popular</div>
+          <div class="rbw"><div class="rb" style="width:15%;background:linear-gradient(90deg,#7CB342,#9CCC65)"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:#7CB342">2.3%</div><div class="rch" style="color:var(--muted)">—</div></div>
+      </div>
+      <!-- 8 -->
+      <div class="ri">
+        <div class="rnum">8</div>
+        <div class="rav" style="border-color:var(--for);color:var(--for)">GF</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--for)">G. Forsyth</div>
+          <div class="rparty">Somos Perú</div>
+          <div class="rbw"><div class="rb" style="width:14%;background:linear-gradient(90deg,var(--for),var(--for2))"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--for)">2.2%</div><div class="rch cdn">▾ 0.9</div></div>
+      </div>
+      <!-- 9 -->
+      <div class="ri">
+        <div class="rnum">9</div>
+        <div class="rav" style="border-color:var(--luna);color:var(--luna)">JLG</div>
+        <div class="rifo">
+          <div class="rname" style="color:var(--luna)">J. Luna Gálvez</div>
+          <div class="rparty">Podemos Perú</div>
+          <div class="rbw"><div class="rb" style="width:12%;background:linear-gradient(90deg,var(--luna),var(--luna2))"></div></div>
+        </div>
+        <div style="text-align:right"><div class="rpct" style="color:var(--luna)">1.9%</div><div class="rch" style="color:var(--muted)">—</div></div>
+      </div>
+
+    </div>
+    <div style="margin-top:5px;background:linear-gradient(135deg,rgba(198,40,40,.07),rgba(198,40,40,.02));border-radius:7px;padding:4px 8px;border:1px solid rgba(198,40,40,.2);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+      <span style="font-size:8.5px;color:var(--muted);font-weight:600">Indecisos + Blanco/Nulo</span>
+      <span style="font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:#E53935;text-shadow:0 0 8px rgba(229,57,53,.4)">45.2%</span>
+    </div>
+    <div class="sn">Fuente: CPI feb 2026 (n=1.300) · Datum (n=1.200)</div>
+  </div>
+
+  <!-- ▌R1C2 — TENDENCIA GRANDE ▐ -->
+  <div class="card r1c2">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--rla),var(--alv),var(--lop))"></div>
+    <div class="ct"><div class="dot" style="background:var(--rla);box-shadow:var(--glow-rla)"></div>TENDENCIA DE INTENCIÓN DE VOTO — NOV 2025 · FEB 2026</div>
+    <div style="flex:1;min-height:0;position:relative;">
+      <canvas id="trendChart"></canvas>
+    </div>
+    <div class="sn">Fuente: CPI / Ipsos — encuestas mensuales urbano-rural &nbsp;·&nbsp; — — indecisos</div>
+  </div>
+
+  <!-- ▌R1C3 — SENTIMIENTO ▐ -->
+  <div class="card r1c3">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--lop),var(--acu),var(--keiko))"></div>
+    <div class="ct"><div class="dot" style="background:var(--acu);box-shadow:var(--glow-acu)"></div>ANÁLISIS DE SENTIMIENTO</div>
+
+    <!-- Donut perfectamente centrado -->
+    <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-height:0;justify-content:space-between;">
+      <div class="gauge-wrap">
+        <canvas id="gaugeChart" width="96" height="96"></canvas>
+        <div class="gauge-center">
+          <div class="gscore">29%</div>
+          <div class="glbl">Indecisos</div>
+        </div>
+      </div>
+
+      <div style="width:100%;padding:0 4px;">
+        <div class="sr">
+          <div class="sd" style="background:#43A047;box-shadow:0 0 7px #43A047"></div>
+          <div class="sname">POSITIVO</div>
+          <div class="sval" style="color:#43A047;text-shadow:0 0 8px rgba(67,160,71,.5)">~55%</div>
+        </div>
+        <div class="sr">
+          <div class="sd" style="background:var(--acu);box-shadow:0 0 7px var(--acu)"></div>
+          <div class="sname">NEUTRAL</div>
+          <div class="sval" style="color:var(--acu);text-shadow:0 0 8px rgba(251,140,0,.5)">29.1%</div>
+        </div>
+        <div class="sr">
+          <div class="sd" style="background:var(--keiko);box-shadow:0 0 7px var(--keiko)"></div>
+          <div class="sname">NEGATIVO</div>
+          <div class="sval" style="color:var(--keiko);text-shadow:0 0 8px rgba(229,57,53,.5)">16.1%</div>
+        </div>
+      </div>
+
+      <div class="polar" style="width:100%">
+        <div><div class="plbl">Fragmentación Electoral</div><div style="font-size:7.5px;color:var(--muted);font-weight:500">38 candidatos inscritos JNE</div></div>
+        <div style="text-align:right"><div class="plbl">Índice Indecisión</div><div class="pval">+29</div></div>
+      </div>
+    </div>
+    <div class="sn">CPI — 14-18 feb 2026 · n=1.300</div>
+  </div>
+
+  <!-- ▌R2C1 — EVOLUCIÓN MINI ▐ -->
+  <div class="card r2c1">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--rla),var(--keiko))"></div>
+    <div class="ct"><div class="dot" style="background:var(--rla);box-shadow:var(--glow-rla)"></div>EVOLUCIÓN — 5 MEDICIONES CPI</div>
+    <div style="flex:1;min-height:0;position:relative;">
+      <canvas id="trendMini"></canvas>
+    </div>
+    <div class="sn">Nov25 · Dic25 · Ene1 · Ene2 · Feb26</div>
+  </div>
+
+  <!-- ▌R2C2 — RADAR ▐ -->
+  <div class="card r2c2">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--acu),var(--lop),var(--rla))"></div>
+    <div class="ct"><div class="dot" style="background:var(--acu);box-shadow:var(--glow-acu)"></div>PERFIL DEL CANDIDATO IDEAL — PERCEPCIÓN CIUDADANA</div>
+    <div class="radar-inner">
+      <div style="flex:1;min-width:0;position:relative;"><canvas id="radarChart"></canvas></div>
+      <div style="width:130px;flex-shrink:0;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <div class="rl-item"><div class="rl-dot" style="background:var(--rla);box-shadow:0 0 6px var(--rla)"></div>R. López Aliaga<span class="rl-ch cup" style="margin-left:auto">▴+1.4</span></div>
+          <div class="rl-item"><div class="rl-dot" style="background:var(--keiko);box-shadow:0 0 6px var(--keiko)"></div>Keiko Fujimori<span class="rl-ch cup" style="margin-left:auto">▴+0.4</span></div>
+          <div class="rl-item"><div class="rl-dot" style="background:var(--lop);box-shadow:0 0 6px var(--lop)"></div>A. López-Chau<span class="rl-ch cup" style="margin-left:auto">▴+3.3</span></div>
+          <div class="rl-item"><div class="rl-dot" style="background:var(--acu);box-shadow:0 0 6px var(--acu)"></div>César Acuña<span class="rl-ch cdn" style="margin-left:auto">▾0.5</span></div>
+        </div>
+        <div style="border-top:1px solid var(--bdr);padding-top:7px;">
+          <div class="rst"><span style="font-size:12px">🗳</span><div><div class="rst-val">38</div><div class="rst-lbl">candidatos JNE</div></div></div>
+          <div class="rst"><span style="font-size:12px">📅</span><div><div class="rst-val" style="font-size:11px">12 Abr</div><div class="rst-lbl">1.ª vuelta</div></div></div>
+          <div class="rst"><span style="font-size:12px">🔄</span><div><div class="rst-val" style="font-size:11px">7 Jun</div><div class="rst-lbl">Balotaje</div></div></div>
+          <div class="rst"><span style="font-size:12px">📍</span><div><div class="rst-val" style="font-size:11px">21%</div><div class="rst-lbl">RLA en Lima</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ▌R2C3 — POSICIONAMIENTO ▐ -->
+  <div class="card r2c3">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--acu),var(--viz))"></div>
+    <div class="ct"><div class="dot" style="background:var(--acu);box-shadow:var(--glow-acu)"></div>POSICIONAMIENTO EN ENCUESTAS</div>
+    <div style="flex:1">
+      <div class="prog-row">
+        <div class="prog-name" style="color:var(--rla)">R. López Aliaga</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:93%;background:linear-gradient(90deg,var(--rla),var(--rla2));box-shadow:var(--glow-rla)"></div></div>
+        <div class="prog-pct" style="color:var(--rla)">13.9</div><div class="prog-ch cdn">▾.7</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-name" style="color:var(--keiko)">Keiko Fujimori</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:47%;background:linear-gradient(90deg,var(--keiko),var(--keiko2));box-shadow:var(--glow-keiko)"></div></div>
+        <div class="prog-pct" style="color:var(--keiko)">7.0</div><div class="prog-ch cup">▴+.4</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-name" style="color:var(--alv)">Carlos Álvarez</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:39%;background:linear-gradient(90deg,var(--alv),var(--alv2));box-shadow:var(--glow-alv)"></div></div>
+        <div class="prog-pct" style="color:var(--alv)">5.8</div><div class="prog-ch cup">▴+1.9</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-name" style="color:var(--lop)">A. López-Chau</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:34%;background:linear-gradient(90deg,var(--lop),var(--lop2));box-shadow:var(--glow-lop)"></div></div>
+        <div class="prog-pct" style="color:var(--lop)">5.1</div><div class="prog-ch cup">▴+3.3</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-name" style="color:var(--acu)">César Acuña</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:27%;background:linear-gradient(90deg,var(--acu),var(--acu2));box-shadow:var(--glow-acu)"></div></div>
+        <div class="prog-pct" style="color:var(--acu)">4.0</div><div class="prog-ch cdn">▾.5</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-name" style="color:var(--viz)">M. Vizcarra</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:25%;background:linear-gradient(90deg,var(--viz),var(--viz2));box-shadow:var(--glow-viz)"></div></div>
+        <div class="prog-pct" style="color:var(--viz)">3.7</div><div class="prog-ch cdn">▾.7</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-name" style="color:var(--for)">G. Forsyth</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:14%;background:linear-gradient(90deg,var(--for),var(--for2))"></div></div>
+        <div class="prog-pct" style="color:var(--for)">2.2</div><div class="prog-ch cdn">▾.9</div>
+      </div>
+    </div>
+    <div style="margin-top:4px;padding-top:4px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+      <span style="font-size:8.5px;color:var(--muted);font-weight:600">Indecisos + Blanco/Nulo</span>
+      <span style="font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:#E53935;text-shadow:0 0 8px rgba(229,57,53,.4)">45.2%</span>
+    </div>
+    <div class="sn">CPI · Datum · Ipsos — feb 2026</div>
+  </div>
+
+  <!-- ▌R3C1+2 — SEGUNDA VUELTA ▐ -->
+  <div class="card r3c12">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--viz),var(--rla),var(--alv))"></div>
+    <div class="ct"><div class="dot" style="background:var(--viz);box-shadow:var(--glow-viz)"></div>SIMULADOR DE SEGUNDA VUELTA (BALOTAJE 7 JUN 2026) — Ipsos / Perú21, feb 2026</div>
+    <div class="sv-grid">
+
+      <!-- LEFT: escenarios -->
+      <div style="display:flex;flex-direction:column;">
+        <div class="sv-title">Escenarios hipotéticos</div>
+        <div class="svr">
+          <div class="svc" style="color:var(--rla)">R. López Aliaga</div>
+          <div class="svvs">vs</div>
+          <div class="svc" style="color:var(--keiko)">Keiko Fujimori</div>
+          <div class="svp" style="color:var(--rla);text-shadow:var(--glow-rla)">44%</div>
+        </div>
+        <div class="svr">
+          <div class="svc" style="color:var(--rla)">R. López Aliaga</div>
+          <div class="svvs">vs</div>
+          <div class="svc" style="color:var(--alv)">Carlos Álvarez</div>
+          <div class="svp" style="color:var(--rla);text-shadow:var(--glow-rla)">46%</div>
+        </div>
+        <div class="svr">
+          <div class="svc" style="color:var(--rla)">R. López Aliaga</div>
+          <div class="svvs">vs</div>
+          <div class="svc" style="color:var(--lop)">A. López-Chau</div>
+          <div class="svp" style="color:var(--rla);text-shadow:var(--glow-rla)">48%</div>
+        </div>
+        <div class="sv-alert" style="margin-top:auto">
+          <div style="font-size:8.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;font-weight:700">⚠ En todos los escenarios</div>
+          <div style="font-size:10.5px;color:#E53935;font-weight:700;margin-top:2px">Blanco/viciado supera el 30–42%</div>
+          <div style="font-size:8.5px;color:var(--muted);margin-top:1px;font-weight:500">RLA ganaría todos los mano a mano</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: detalle -->
+      <div style="display:flex;flex-direction:column;">
+        <div class="sv-title">Detalle de simulacros — Ipsos, feb 2026 (n=1.211)</div>
+        <div class="svd">
+          <div class="svav" style="border-color:var(--rla);color:var(--rla)">RLA</div>
+          <div class="svdi"><div class="svdn" style="color:var(--rla)">R. López Aliaga</div><div class="svds">Renovación Popular</div></div>
+          <div style="font-size:9px;color:var(--muted);font-weight:600">vs.</div>
+          <div style="min-width:60px;text-align:right"><div class="svdn" style="color:var(--keiko)">Keiko Fujimori</div><div class="svds">Fuerza Popular</div></div>
+          <div class="sv-bars">
+            <div class="svbr"><div class="svbf" style="width:44%;background:linear-gradient(90deg,var(--rla),var(--rla2));box-shadow:var(--glow-rla)"></div><span style="font-size:8px;color:var(--rla);margin-left:3px;font-weight:700">44%</span></div>
+            <div class="svbr"><div class="svbf" style="width:27%;background:linear-gradient(90deg,var(--keiko),var(--keiko2));box-shadow:var(--glow-keiko)"></div><span style="font-size:8px;color:var(--keiko);margin-left:3px;font-weight:700">27%</span></div>
+          </div>
+          <div class="svwin" style="color:var(--rla);text-shadow:var(--glow-rla)">+17</div>
+        </div>
+        <div class="svd">
+          <div class="svav" style="border-color:var(--rla);color:var(--rla)">RLA</div>
+          <div class="svdi"><div class="svdn" style="color:var(--rla)">R. López Aliaga</div><div class="svds">Renovación Popular</div></div>
+          <div style="font-size:9px;color:var(--muted);font-weight:600">vs.</div>
+          <div style="min-width:60px;text-align:right"><div class="svdn" style="color:var(--alv)">Carlos Álvarez</div><div class="svds">País para Todos</div></div>
+          <div class="sv-bars">
+            <div class="svbr"><div class="svbf" style="width:46%;background:linear-gradient(90deg,var(--rla),var(--rla2));box-shadow:var(--glow-rla)"></div><span style="font-size:8px;color:var(--rla);margin-left:3px;font-weight:700">46%</span></div>
+            <div class="svbr"><div class="svbf" style="width:20%;background:linear-gradient(90deg,var(--alv),var(--alv2));box-shadow:var(--glow-alv)"></div><span style="font-size:8px;color:var(--alv);margin-left:3px;font-weight:700">20%</span></div>
+          </div>
+          <div class="svwin" style="color:var(--rla);text-shadow:var(--glow-rla)">+26</div>
+        </div>
+        <div class="svd">
+          <div class="svav" style="border-color:var(--rla);color:var(--rla)">RLA</div>
+          <div class="svdi"><div class="svdn" style="color:var(--rla)">R. López Aliaga</div><div class="svds">Renovación Popular</div></div>
+          <div style="font-size:9px;color:var(--muted);font-weight:600">vs.</div>
+          <div style="min-width:60px;text-align:right"><div class="svdn" style="color:var(--lop)">A. López-Chau</div><div class="svds">Ahora Nación</div></div>
+          <div class="sv-bars">
+            <div class="svbr"><div class="svbf" style="width:48%;background:linear-gradient(90deg,var(--rla),var(--rla2));box-shadow:var(--glow-rla)"></div><span style="font-size:8px;color:var(--rla);margin-left:3px;font-weight:700">48%</span></div>
+            <div class="svbr"><div class="svbf" style="width:14%;background:linear-gradient(90deg,var(--lop),var(--lop2));box-shadow:var(--glow-lop)"></div><span style="font-size:8px;color:var(--lop);margin-left:3px;font-weight:700">14%</span></div>
+          </div>
+          <div class="svwin" style="color:var(--rla);text-shadow:var(--glow-rla)">+34</div>
+        </div>
+      </div>
+    </div>
+    <div class="sn">Ipsos/Perú21 — 5-6 feb 2026 · n=1.211 · Voto blanco/viciado supera 30% en todos los escenarios</div>
+  </div>
+
+  <!-- ▌R3C3 — CIS ▐ -->
+  <div class="card r3c3">
+    <div class="accent-bar" style="background:linear-gradient(90deg,var(--rla),var(--keiko),var(--acu))"></div>
+    <div class="ct"><div class="dot" style="background:var(--rla);box-shadow:var(--glow-rla)"></div>CANDIDATO IDEAL SCORE (CIS)</div>
+    <div style="flex:1">
+      <div class="cisr"><div class="cisn" style="color:var(--rla)">R. LÓPEZ ALIAGA</div><div class="cisp">1°</div><div class="cisl">Lima: 21%</div><div class="cisb bb">13.9</div></div>
+      <div class="cisr"><div class="cisn" style="color:var(--keiko)">KEIKO FUJIMORI</div><div class="cisp">2°</div><div class="cisl">Fuera Lima</div><div class="cisb br">7.0</div></div>
+      <div class="cisr"><div class="cisn" style="color:var(--alv)">CARLOS ÁLVAREZ</div><div class="cisp">3°</div><div class="cisl">Crecimiento</div><div class="cisb bc">5.8</div></div>
+      <div class="cisr"><div class="cisn" style="color:var(--lop)">A. LÓPEZ-CHAU</div><div class="cisp">4°</div><div class="cisl">+350% vs nov</div><div class="cisb bg">5.1</div></div>
+      <div class="cisr"><div class="cisn" style="color:var(--acu)">C. ACUÑA</div><div class="cisp">5°</div><div class="cisl">Interior país</div><div class="cisb bo">4.0</div></div>
+      <div class="cisr"><div class="cisn" style="color:var(--viz)">M. VIZCARRA</div><div class="cisp">6°</div><div class="cisl">Perú Primero</div><div class="cisb bp">3.7</div></div>
+      <div class="cisr"><div class="cisn" style="color:var(--for)">G. FORSYTH</div><div class="cisp">7°</div><div class="cisl">Somos Perú</div><div class="cisb bk">2.2</div></div>
+    </div>
+    <div style="margin-top:5px;background:linear-gradient(135deg,rgba(183,28,28,.07),rgba(183,28,28,.02));border-radius:7px;padding:5px 8px;border:1px solid rgba(183,28,28,.18);flex-shrink:0">
+      <div style="font-size:8.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;font-weight:700">⚠ Ningún candidato supera 15%</div>
+      <div style="font-size:10.5px;color:#E53935;font-weight:700;margin-top:1px;text-shadow:0 0 8px rgba(229,57,53,.3)">Indecisos lideran: 29.1%</div>
+    </div>
+    <div class="sn">CPI/Ipsos/Datum — feb 2026</div>
+  </div>
+
+</div><!-- /grid -->
+
+<script>
+Chart.defaults.color = '#7B89B8';
+Chart.defaults.font.family = 'Exo 2';
+Chart.defaults.font.size = 9;
+const gc = 'rgba(0,0,0,0.05)';
+
+// ── HELPER: gradient line
+function lineGrad(ctx, c1, c2) {
+  const g = ctx.createLinearGradient(0,0,ctx.canvas.width,0);
+  g.addColorStop(0, c1); g.addColorStop(1, c2);
+  return g;
+}
+
+// ── TREND GRANDE
+const tCtx = document.getElementById('trendChart').getContext('2d');
+new Chart(tCtx, {
+  type:'line',
+  data:{
+    labels:['Nov 2025','Dic 2025','Ene 1ª','Ene 2ª','Feb 2026'],
+    datasets:[
+      {label:'R. López Aliaga',data:[12.5,12.5,13.6,14.6,13.9],
+        borderColor:'#1E88E5',backgroundColor:'rgba(30,136,229,.1)',
+        tension:.4,fill:true,pointRadius:4,pointBackgroundColor:'#1E88E5',
+        pointBorderColor:'#fff',pointBorderWidth:1.5,borderWidth:2.5},
+      {label:'Keiko Fujimori', data:[7.6,7.1,7.1,6.6,7.0],
+        borderColor:'#E53935',backgroundColor:'transparent',
+        tension:.4,fill:false,pointRadius:4,pointBackgroundColor:'#E53935',
+        pointBorderColor:'#fff',pointBorderWidth:1.5,borderWidth:2},
+      {label:'C. Álvarez',     data:[3.0,3.5,3.9,4.5,5.8],
+        borderColor:'#00ACC1',backgroundColor:'transparent',
+        tension:.4,fill:false,pointRadius:4,pointBackgroundColor:'#00ACC1',
+        pointBorderColor:'#fff',pointBorderWidth:1.5,borderWidth:2},
+      {label:'A. López-Chau', data:[1.8,2.5,3.1,4.6,5.1],
+        borderColor:'#43A047',backgroundColor:'transparent',
+        tension:.4,fill:false,pointRadius:4,pointBackgroundColor:'#43A047',
+        pointBorderColor:'#fff',pointBorderWidth:1.5,borderWidth:2},
+      {label:'C. Acuña',      data:[3.7,3.9,3.7,4.0,4.0],
+        borderColor:'#FB8C00',backgroundColor:'transparent',
+        tension:.4,fill:false,pointRadius:4,pointBackgroundColor:'#FB8C00',
+        pointBorderColor:'#fff',pointBorderWidth:1.5,borderWidth:2},
+      {label:'M. Vizcarra',   data:[4.0,4.2,4.4,4.7,3.7],
+        borderColor:'#8E24AA',backgroundColor:'transparent',
+        tension:.4,fill:false,pointRadius:3,pointBackgroundColor:'#8E24AA',
+        pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:1.5},
+      {label:'Indecisos',     data:[30.7,30.5,30.5,29.5,29.1],
+        borderColor:'#9E9E9E',backgroundColor:'rgba(158,158,158,.04)',
+        tension:.4,fill:false,pointRadius:3,pointBackgroundColor:'#9E9E9E',
+        pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:1.5,borderDash:[5,4]},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{
+      legend:{position:'bottom',labels:{boxWidth:9,padding:10,font:{size:9},usePointStyle:true,pointStyleWidth:8}},
+      tooltip:{
+        backgroundColor:'rgba(255,255,255,.97)',
+        titleColor:'#0D1535',bodyColor:'#7B89B8',
+        borderColor:'#D4DCF5',borderWidth:1,
+        padding:10,
+        boxShadow:'0 4px 12px rgba(0,0,0,.1)'
+      }
+    },
+    scales:{
+      x:{grid:{color:gc,drawBorder:false},ticks:{font:{size:9},color:'#7B89B8'}},
+      y:{min:0,max:35,grid:{color:gc,drawBorder:false},
+        ticks:{callback:v=>v+'%',font:{size:9},color:'#7B89B8'}}
+    }
+  }
+});
+
+// ── GAUGE (donut)
+new Chart(document.getElementById('gaugeChart').getContext('2d'),{
+  type:'doughnut',
+  data:{
+    datasets:[{
+      data:[54.8,29.1,16.1],
+      backgroundColor:['#43A047','#FB8C00','#E53935'],
+      borderWidth:3, borderColor:'#ffffff',
+      hoverOffset:4,
+    }]
+  },
+  options:{
+    cutout:'70%',
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    animation:{animateRotate:true,duration:1000}
+  }
+});
+
+// ── TREND MINI
+new Chart(document.getElementById('trendMini').getContext('2d'),{
+  type:'line',
+  data:{
+    labels:['Nov','Dic','Ene1','Ene2','Feb'],
+    datasets:[
+      {data:[12.5,12.5,13.6,14.6,13.9],borderColor:'#1E88E5',tension:.4,fill:false,pointRadius:3,pointBackgroundColor:'#1E88E5',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2},
+      {data:[7.6,7.1,7.1,6.6,7.0],    borderColor:'#E53935',tension:.4,fill:false,pointRadius:3,pointBackgroundColor:'#E53935',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2},
+      {data:[3.0,3.5,3.9,4.5,5.8],    borderColor:'#00ACC1',tension:.4,fill:false,pointRadius:3,pointBackgroundColor:'#00ACC1',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2},
+      {data:[1.8,2.5,3.1,4.6,5.1],    borderColor:'#43A047',tension:.4,fill:false,pointRadius:3,pointBackgroundColor:'#43A047',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2},
+      {data:[3.7,3.9,3.7,4.0,4.0],    borderColor:'#FB8C00',tension:.4,fill:false,pointRadius:3,pointBackgroundColor:'#FB8C00',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:1.5},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    scales:{
+      x:{grid:{color:gc,drawBorder:false},ticks:{font:{size:8},color:'#7B89B8'}},
+      y:{min:0,max:18,grid:{color:gc,drawBorder:false},ticks:{callback:v=>v+'%',font:{size:8},color:'#7B89B8'}}
+    }
+  }
+});
+
+// ── RADAR
+new Chart(document.getElementById('radarChart').getContext('2d'),{
+  type:'radar',
+  data:{
+    labels:['Exp.\nGobierno','Transparencia','Liderazgo','Prop.\nEconómica','Gestión\nPública','Aprobación\nCiudadana'],
+    datasets:[
+      {label:'R. López Aliaga',data:[70,55,84,74,68,70],
+        borderColor:'#1E88E5',backgroundColor:'rgba(30,136,229,.15)',
+        pointBackgroundColor:'#1E88E5',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2,pointRadius:3},
+      {label:'Keiko Fujimori', data:[82,38,68,66,62,46],
+        borderColor:'#E53935',backgroundColor:'rgba(229,57,53,.1)',
+        pointBackgroundColor:'#E53935',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2,pointRadius:3},
+      {label:'A. López-Chau', data:[54,72,58,70,56,54],
+        borderColor:'#43A047',backgroundColor:'rgba(67,160,71,.1)',
+        pointBackgroundColor:'#43A047',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2,pointRadius:3},
+      {label:'C. Acuña',      data:[64,38,60,68,66,42],
+        borderColor:'#FB8C00',backgroundColor:'rgba(251,140,0,.08)',
+        pointBackgroundColor:'#FB8C00',pointBorderColor:'#fff',pointBorderWidth:1,borderWidth:2,pointRadius:3},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{
+      r:{
+        min:0,max:100,
+        grid:{color:'rgba(0,0,0,.07)'},
+        angleLines:{color:'rgba(0,0,0,.07)'},
+        pointLabels:{color:'#7B89B8',font:{size:8.5,weight:'600'}},
+        ticks:{display:false}
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
